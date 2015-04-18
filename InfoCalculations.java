@@ -24,8 +24,9 @@ public class InfoCalculations
 		for(int i = 0; i < saveData.size(); i++)//for each index of saveData
 		{
 			//grab the total distance
-			saveData += saveData.get(i).get("distance"); //.get("distance") to be replaced by whatever method we use to grab a variable from an jsonObject
+			totalDistance += saveData.get(i).get("distance"); //.get("distance") to be replaced by whatever method we use to grab a variable from an jsonObject
 		}
+		return totalDistance;
 	}
 
 	public double averageDriveDistance()
@@ -183,5 +184,33 @@ public class InfoCalculations
 		return averageDistance;
 
 	}
+	
+	public String averageTimeDriven()
+	{
+		//when we have the total for the distance travelled
+				String averageTime = this.totalTime()/saveData.size();
+				return averageTime;
+	}
+	
+	/**
+	 * returns the total time driven in the save file in minutes
+	 * @return
+	 */
+	private int totalTime()
+	{
+		//i'm using this varaible enough that I should write a separate method for it
+		int totalTime = 0;
+		for(int i = 0; i < saveData.size(); i++)//for each index of saveData
+		{
+			//get the start time
+			String startTime = saveData.get(i).get("startTime");
+			//get the end time
+			String endTime = saveData.get(i).get("endTime");
+			//****CONTINUE
+			//total time in minutes
+		}
+	}
+
+	
 
 }
