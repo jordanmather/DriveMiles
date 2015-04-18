@@ -76,8 +76,36 @@ public class InfoCalculations
 		//clean up by increment the days counter
 		dayCount++;
 		//get the average by dividing the total distance by the days
-		double averageDistancePerDay = this.totalDriveDistance()/days;
+		double averageDistancePerDay = this.totalDriveDistance()/dayCount;
 	}
+
+	/**
+	 * this method takes a String date (formatted mm/dd/yyyy) and returns the 
+	 * average drive distance for that week.  The week is considered to be the Sunday-Saturday
+	 * selection of seven days that the date is contained in.
+	 *  
+	 * @param date
+	 * @return the average distance traveled as a double
+	 */
+	public boolean averageWeekDriveDistance(String date)
+	{
+		int count = 0;
+		double totalDistance = 0;
+
+		String beginningOfWeek = "";
+		String endOfWeek = "";
+
+		//find the specified week
+		for(int i = 0; i < saveData.size(); i++)
+		{
+			String dateToCheck = saveData.get(i).get("date");
+			if(dateToCheck.equals(date))
+			{
+				//we have found the date, now to find the beginning and end of the week 
+			}
+		}
+	}
+
 
 	public double averageMonthDriveDistance(int twoDigitMonth, int fourDigitYear)
 	{
@@ -87,8 +115,8 @@ public class InfoCalculations
 		//find the total amount driven during the given month, then divide by the number of drives
 		for(int i = 0; i < saveData.size(); i++)
 		{
-			
-			
+
+
 			//determine if the date is in the correct month
 			String date = saveData.get(i).get("date");
 			String[]checkDate = date.split("/"); //the month will be at index 0, the year at index 2
@@ -104,19 +132,56 @@ public class InfoCalculations
 			{
 				//check for break conditions
 				if(Integer.parseInt(checkDate[2]) > fourDigitYear || 
-							(Integer.parseInt(checkDate[2]) == fourDigitYear 
-							&& Integer.parseInt(checkDate[0]) > twoDigitMonth))
-						{
+						(Integer.parseInt(checkDate[2]) == fourDigitYear 
+						&& Integer.parseInt(checkDate[0]) > twoDigitMonth))
+				{
 					//we passed the month, no point in continuing checking
 					break;
-						}
-				
+				}
+
 			}
 		}
 		//we have the total distance
 		double averageDistance = totalDistance/count;
 		return averageDistance;
-		
+
+	}
+
+	public double averageYearDriveDistance(int fourDigitYear)
+	{
+		//Setup variables
+		int count = 0;
+		double totalDistance = 0;
+		//find the total amount driven during the given month, then divide by the number of drives
+		for(int i = 0; i < saveData.size(); i++)
+		{
+
+
+			//determine if the date is in the correct month
+			String date = saveData.get(i).get("date");
+			String[]checkDate = date.split("/"); //the month will be at index 0, the year at index 2
+			if(Integer.parseInt(checkDate[2]) == fourDigitYear)
+			{
+				//this is the correct year, continue
+				//each time, increment the count and add to the totalDistance
+				count++;
+				totalDistance += saveData.get(i).get("distance");
+			}
+			else
+			{
+				//check for break conditions
+				if(Integer.parseInt(checkDate[2]) > fourDigitYear)
+				{
+					//we passed the year, no point in continuing checking
+					break;
+				}
+
+			}
+		}
+		//we have the total distance
+		double averageDistance = totalDistance/count;
+		return averageDistance;
+
 	}
 
 }
