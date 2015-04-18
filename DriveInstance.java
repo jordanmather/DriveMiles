@@ -9,6 +9,7 @@ public class DriveInstance
 	 * String: date
 	 * String: startTime
 	 * String: endTime
+	 * String: day
 	 * double: latStartCoordinate
 	 * double: lonStartCoordinate
 	 * double: latEndCoordinate
@@ -19,9 +20,10 @@ public class DriveInstance
 	
 	
 	
-	private String date = "";
-	private String startTime = "";
-	private String endTime = "";
+	private String date = ""; //format mm/dd/yyyy ex. date = "04/17/2015";
+	private String day = ""; // mon, tue, wed, thu, fri, sat, sun ex. day = "mon";
+	private String startTime = ""; // 00:00 through 24:00 ex. startTime = "22:00";
+	private String endTime = ""; // 00:00 through 24:00 ex. endTime = "22:01";
 	private double latStartCoordinate;
 	private double lonStartCoordinate;
 	private double latEndCoordinate;
@@ -29,10 +31,11 @@ public class DriveInstance
 	private double distance;
 	
 	
-	public DriveInstance(String date, String startTime, double latStartCoordinate, double lonStartCoordinates)
+	public DriveInstance(String date, String day, String startTime, double latStartCoordinate, double lonStartCoordinates)
 	{
 		//when an instance of this class is made, set the date, startTime, and the StartCoordinates
 		this.date = date;
+		this.day = day;
 		this.startTime = startTime;
 		this.latStartCoordinate = latStartCoordinate;
 		this.lonStartCoordinate = lonStartCoordinates;
@@ -131,6 +134,7 @@ public class DriveInstance
 		 * DriveInstance:
 		 * {
 		 * 	"date":"this.date";
+		 * 	"day":"this.day";
 		 * 	"time":
 		 * 		{
 		 * 			"startTime":"this.startTime";
