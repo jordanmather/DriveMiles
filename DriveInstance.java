@@ -3,7 +3,7 @@ public class DriveInstance
 {
 	
 	/*
-	 * Created by Jordan Mather 4/17/15
+	 * Created by Jordan Mather 9:00 4/17/15
 	 *This class sets up the structure for tracking all the information needed by the program.
 	 *This includes:
 	 * String: date
